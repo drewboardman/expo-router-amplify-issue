@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react';
 import { fetchAuthSession } from 'aws-amplify/auth'
 import {
   withAuthenticator,
-  useAuthenticator
+  Authenticator
 } from '@aws-amplify/ui-react-native';
 import { config } from './amplifyconfigs/main';
 import { Amplify } from 'aws-amplify';
 
 
 import { useColorScheme } from '@/components/useColorScheme';
-import { AuthProvider } from './contexts/AuthContext';
+// import { AuthProvider } from './contexts/AuthContext';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,9 +52,11 @@ function App() {
   }
 
   return (
-    <AuthProvider>
-      <RootLayoutNav />
-    </AuthProvider>
+    <Authenticator.Provider>
+      <Authenticator>
+        <RootLayoutNav />
+      </Authenticator>
+    </Authenticator.Provider>
   );
 }
 
