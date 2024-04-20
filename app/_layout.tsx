@@ -15,6 +15,7 @@ import { Amplify } from 'aws-amplify';
 
 import { useColorScheme } from '@/components/useColorScheme';
 // import { AuthProvider } from './contexts/AuthContext';
+Amplify.configure(config);
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -29,7 +30,6 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-Amplify.configure(config);
 function App() {
   const [loaded, error] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -64,14 +64,14 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    // <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
-    </ThemeProvider>
+    // </ThemeProvider>
   );
 }
 
-export default withAuthenticator(App);
-// export default App;
+// export default withAuthenticator(App);
+export default App;
